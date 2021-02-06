@@ -3,7 +3,6 @@ const dotenv = require('dotenv').config()
 
 const { IG_USER: username , IG_PASS: password } = process.env
 const jinxed = { id: 32576604, username: 'jinxedstore' }
-const me = { id: 45729136975, username: 'zuul_1999' }
 
 const client = new Instagram({
   username,
