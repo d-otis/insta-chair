@@ -1,45 +1,42 @@
-const http = require('http')
-const express = require('express')
+const Instagram = require('instagram-web-api')
 const dotenv = require('dotenv').config()
-const app = express()
-const api = require('instagram-node').instagram()
 
-api.use({
-  client_id: process.env.IG_APP_ID,
-  client_secret: process.env.IG_APP_SECRET
+const { IG_USER: username , IG_PASS: password } = process.env
+const jinxed = { id: 32576604, username: 'jinxedstore' }
+const me = { id: 45729136975, username: 'zuul_1999' }
+
+const client = new Instagram({
+  username,
+  password
 })
 
-const redirectURI = process.env.REDIRECT_URI
+;(async () => {
+  await client.login()
+  const response = await client.getPhotosByUsername({ username: jinxed.username, first: 5 })
 
-exports.authorize_user = (req, res) => {
-  res.redirect(api.get_authorization_url(redirectURI, {scope: ['user_media']}))
-}
+  const posts = response.user.edge_owner_to_timeline_media.edges
+  // CAPTION
+  // edges[0].node.edge_media_to_caption.edges[0].node.text
+  // COMMENTS
+  // edges[0].node.edge_media_to_comment.edges[0].node.text
+  // COMMENT AUTHOR SHOULD === edges[0].node.edge_media_to_comment.edges[0].node.owner.username aka 'jinxed store'
+  console.log(posts)
 
-exports.handleAuth = (req, res) => {
-  api.authorize_user(req.query.code, redirect_uri, (err, results) => {
-    if (err) {
-      console.log(err.body)
-      res.send("Didn't work")
-    } else {
-      console.log("Yay! Access token is: " + result.access_token)
-      res.send('You made it!')
+  const results = posts.map(post => {
+    return {
+      postId: post.node.id,
+      caption: post.node.edge_media_to_caption.edges[0].node.text,
+      comments: post.node.edge_media_to_comment.edges.map(edge => ({ authorId: edge.node.owner.id, comment: edge.node.text }))
     }
   })
-}
 
-app.get('/authorize_user', exports.authorize_user)
+  const isSold = post => {
+    // ARGUMENT: single post
+    // RETURN: boolean
+  }
 
-app.get('/handle_auth', exports.handleAuth)
+  const postsWithChairs = results.filter(post => post.caption.toLowerCase().includes('chair'))
 
-app.get('/:message', (req, res) => {
-  console.log(req)
-  res.send(req.params.message)
-})
-
-app.get("/", (req,res) => {
-  res.send('root')
-})
-
-app.listen('3000', () => {
-  console.log('listening opn port')
-})
+  const unsoldChairs = postsWithChairs.filter(post => post.comments.length === 0)
+  console.log(results)
+})()
