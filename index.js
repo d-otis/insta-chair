@@ -32,6 +32,9 @@ const client = new Instagram({
   const isSold = post => {
     // ARGUMENT: single post
     // RETURN: boolean
+    const soldItems = post.comments.filter(comment => comment.text.toLowerCase().includes('sold'))
+
+    if (soldItems.length) return true
   }
 
   const postsWithChairs = results.filter(post => post.caption.toLowerCase().includes('chair'))
