@@ -39,6 +39,7 @@ const client = new Instagram({
 
   const postsWithChairs = results.filter(post => post.caption.toLowerCase().includes('chair'))
 
-  const unsoldChairs = postsWithChairs.filter(post => post.comments.length === 0)
-  console.log(results)
+  const unsoldChairs = postsWithChairs.filter(post => !isSold(post))
+
+  if (unsoldChairs.length) console.log(unsoldChairs)
 })()
