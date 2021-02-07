@@ -25,7 +25,7 @@ const client = new Instagram({
     return {
       postId: post.node.id,
       caption: post.node.edge_media_to_caption.edges[0].node.text,
-      comments: post.node.edge_media_to_comment.edges.map(edge => ({ authorId: edge.node.owner.id, comment: edge.node.text }))
+      comments: post.node.edge_media_to_comment.edges.map(edge => ({ authorId: edge.node.owner.id, text: edge.node.text })),
     }
   })
 
