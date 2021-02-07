@@ -14,12 +14,6 @@ const client = new Instagram({
   const response = await client.getPhotosByUsername({ username: jinxed.username, first: 16 })
 
   const posts = response.user.edge_owner_to_timeline_media.edges
-  // CAPTION
-  // edges[0].node.edge_media_to_caption.edges[0].node.text
-  // COMMENTS
-  // edges[0].node.edge_media_to_comment.edges[0].node.text
-  // COMMENT AUTHOR SHOULD === edges[0].node.edge_media_to_comment.edges[0].node.owner.username aka 'jinxed store'
-  console.log(posts)
 
   const results = posts.map(post => {
     return {
@@ -31,8 +25,6 @@ const client = new Instagram({
   })
 
   const isSold = post => {
-    // ARGUMENT: single post
-    // RETURN: boolean
     const soldItems = post.comments.filter(comment => comment.text.toLowerCase().includes('sold'))
 
     if (soldItems.length) return true
