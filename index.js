@@ -11,7 +11,7 @@ const client = new Instagram({
 
 ;(async () => {
   await client.login()
-  const response = await client.getPhotosByUsername({ username: jinxed.username, first: 5 })
+  const response = await client.getPhotosByUsername({ username: jinxed.username, first: 16 })
 
   const posts = response.user.edge_owner_to_timeline_media.edges
   // CAPTION
