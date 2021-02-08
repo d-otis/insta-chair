@@ -24,7 +24,8 @@ const getUnsoldChairs = async () => {
       caption: post.node.edge_media_to_caption.edges[0].node.text,
       comments: post.node.edge_media_to_comment.edges.map(edge => ({ authorId: edge.node.owner.id, text: edge.node.text })),
       url: `https://www.instagram.com/p/${post.node.shortcode}`,
-      thumbnail: post.node.display_resources[1].src
+      thumbnail: post.node.display_resources[1].src,
+      takenAt: formatTimestamp(post.node.taken_at_timestamp)
     }
   })
 
