@@ -1,4 +1,6 @@
-node_modules
+/node_modules
 .env
 notes.md
 .vscode
+pi.log
+/src/savedPosts.json
