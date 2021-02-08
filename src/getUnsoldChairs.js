@@ -38,8 +38,6 @@ const getUnsoldChairs = async () => {
 
   const unsoldChairs = postsWithChairs.filter(post => !isSold(post))
 
-  const generateURL = post => `https://www.instagram.com/p/${post.shortcode}`
-
   if (unsoldChairs.length) {
     console.log(unsoldChairs)
     return unsoldChairs
