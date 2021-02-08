@@ -25,6 +25,8 @@ const client = new Instagram({
   })
 
   const isSold = post => {
+    if (!post.comments.length) return false
+
     const soldItems = post.comments.filter(comment => comment.text.toLowerCase().includes('sold'))
 
     if (soldItems.length) return true
