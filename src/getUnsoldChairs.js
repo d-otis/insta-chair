@@ -16,6 +16,8 @@ const getUnsoldChairs = async () => {
 
   const posts = response.user.edge_owner_to_timeline_media.edges
 
+  const formatTimestamp = timestamp => new Date(timestamp * 1000).toLocaleString()
+
   const results = posts.map(post => {
     return {
       postId: post.node.id,
