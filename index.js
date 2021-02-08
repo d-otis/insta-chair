@@ -36,5 +36,7 @@ const client = new Instagram({
 
   const unsoldChairs = postsWithChairs.filter(post => !isSold(post))
 
-  if (unsoldChairs.length) console.log(unsoldChairs)
+  const generateURL = post => `https://www.instagram.com/p/${post.shortcode}`
+
+  if (unsoldChairs.length) console.log(unsoldChairs.map(chair => generateURL(chair)))
 })()
