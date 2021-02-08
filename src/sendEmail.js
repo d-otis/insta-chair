@@ -11,6 +11,7 @@ const renderTemplate = chairs => {
 }
 
 const sendEmail = chairs => {
+  // chairs : Array of objects
   const html = renderTemplate(chairs)
 
   const mail = nodemailer.createTransport({
