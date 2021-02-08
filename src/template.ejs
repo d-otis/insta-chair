@@ -1,0 +1,10 @@
+<h1><%= `Jinxed has ${chairs.length} chair${chairs.length === 1 ? '' : 's'}` %> </h1>
+<hr>
+
+<% chairs.forEach(chair => { %>
+  <img src="<%- chair.thumbnail %> " alt="">
+  <small>Taken @ <%- chair.takenAt %> </small>
+  <a href="<%- chair.url %>"><%- chair.url %></a>
+  <p><%- chair.caption %> </p>
+  <hr>
+<% }) %>
