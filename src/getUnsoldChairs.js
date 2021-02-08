@@ -41,9 +41,8 @@ const getUnsoldChairs = async () => {
   const generateURL = post => `https://www.instagram.com/p/${post.shortcode}`
 
   if (unsoldChairs.length) {
-    const chairs = unsoldChairs.map(chair => generateURL(chair))
-    console.log(chairs)
-    return chairs
+    console.log(unsoldChairs)
+    return unsoldChairs
   }
 }
 
