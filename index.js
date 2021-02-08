@@ -1,8 +1,7 @@
 const getUnsoldChairs = require('./src/getUnsoldChairs')
-const sendEmailWith = require('./src/sendEmail')
+const sendEmail = require('./src/sendEmail')
 
 ;(async () => {
-  // const chairs = await getUnsoldChairs()
-  const chairs = []
-  sendEmailWith(chairs)
+  const chairs = await getUnsoldChairs()
+  sendEmail(chairs)
 })()
