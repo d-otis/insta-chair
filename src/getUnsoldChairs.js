@@ -41,10 +41,7 @@ const getUnsoldChairs = async () => {
 
   const unsoldChairs = postsWithChairs.filter(post => !isSold(post))
 
-  if (unsoldChairs.length) {
-    console.log(unsoldChairs)
-    return unsoldChairs
-  }
+  if (unsoldChairs.length) unsoldChairs
 }
 
 module.exports = getUnsoldChairs
