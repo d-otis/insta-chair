@@ -5,6 +5,10 @@ const persistChairs = require('./src/persistChairs')
 
 ;(async () => {
   console.log(`starting INSTA-CHAIR @ ${new Date().toLocaleString()}`)
-  const chairs = await getUnsoldChairs()
-  sendEmail(chairs)
+
+  const chairs = await getChairs(savedChairs.map(chair => chair.postId))
+  
+  persistChairs([ ...savedChairs, ...chairs.sold ])
+
+  sendEmail(chairs.unsold)
 })()
