@@ -41,14 +41,10 @@ const getChairs = async soldIds => {
     if (soldComments.length) return true
   }
 
-  // const postsWithChairs = results.filter(post => post.caption.toLowerCase().includes('chair'))
   const postsWithChairs = Object.keys(results).filter(postId => results[postId].caption.toLowerCase().includes('chair'))
 
-  // const unsoldChairs = postsWithChairs.filter(post => !isSold(post))
   const unsoldChairs = postsWithChairs.filter(postId => !isSold(results[postId]))
   const soldChairs = postsWithChairs.filter(postId => isSold(results[postId]))
-
-  // if (unsoldChairs.length) return unsoldChairs.map(chair => results[chair])
   
   return {
     unsold: unsoldChairs.map(chair => results[chair]),
