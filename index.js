@@ -1,4 +1,4 @@
-const getUnsoldChairs = require('./src/getUnsoldChairs')
+const getChairs = require('./src/getChairs')
 const sendEmail = require('./src/sendEmail')
 
 ;(async () => {
