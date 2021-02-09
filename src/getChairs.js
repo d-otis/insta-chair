@@ -10,7 +10,8 @@ const client = new Instagram({
   password
 })
 
-const getChairs = async () => {
+const getChairs = async soldIds => {
+
   await client.login()
   const response = await client.getPhotosByUsername({ username: jinxed.username, first: 10 })
 
