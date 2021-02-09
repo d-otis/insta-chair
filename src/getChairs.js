@@ -16,7 +16,7 @@ const getChairs = async soldIds => {
   const response = await client.getPhotosByUsername({ username: jinxed.username, first: 10 })
 
   const posts = response.user.edge_owner_to_timeline_media.edges
-
+  console.log(`Parsing through ${posts.length} posts`)
   const formatTimestamp = timestamp => new Date(timestamp * 1000).toLocaleString()
 
   const results = 
