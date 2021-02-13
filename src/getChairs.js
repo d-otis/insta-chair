@@ -13,7 +13,7 @@ const client = new Instagram({
 const getChairs = async soldIds => {
 
   await client.login()
-  const response = await client.getPhotosByUsername({ username: jinxed.username, first: 10 })
+  const response = await client.getPhotosByUsername({ username: jinxed.username, first: 17 })
 
   const posts = response.user.edge_owner_to_timeline_media.edges
   console.log(`Parsing through ${posts.length} posts`)
